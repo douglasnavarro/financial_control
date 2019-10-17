@@ -1,6 +1,5 @@
+import 'package:financial_control/widgets/user_transactions.dart';
 import 'package:flutter/material.dart';
-
-import './transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Financial Control'),
+      home: MyHomePage(title: 'Controle financeiro'),
     );
   }
 }
@@ -26,21 +25,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: '1',
-      title: 'Shoes',
-      amount: 10.50,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '2',
-      title: 'Groceries',
-      amount: 25.10,
-      date: DateTime.now(),
-    )
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +32,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -58,33 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('CHART'),
                 elevation: 5,
               )),
-          Column(
-            children: transactions.map((tx) {
-              return Card(
-                  child: Row(
-                children: <Widget>[
-                  Container(
-                    child: Text(tx.amount.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.purple)),
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.purple, width: 2),
-                    ),
-                    padding: EdgeInsets.all(10),
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Text(tx.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      Text(tx.date.toString(), style: TextStyle(color: Colors.grey)),
-                    ],
-                  )
-                ],
-              ));
-            }).toList(),
-          )
+              UserTransactions()
         ],
       ),
     );
