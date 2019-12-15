@@ -31,18 +31,21 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
               width: double.infinity,
               child: Card(
                 color: Colors.blue,
                 child: Text('CHART'),
                 elevation: 5,
-              )),
-              UserTransactions()
-        ],
+              ),
+            ),
+            UserTransactions()
+          ],
+        ),
       ),
     );
   }
